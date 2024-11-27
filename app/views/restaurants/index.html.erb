@@ -1,0 +1,19 @@
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/restaurants">Restaurants</a>
+    <a class="btn btn-primary" href="/restaurants/new">New Restaurant</a>
+    <a class="btn btn-primary" href="/restaurants/reviews/new">New Review</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div id="restaurants">
+    <% @restaurants.each do |restaurant| %>
+      <%= restaurant.name %>
+      <p>
+        <%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary"%>
+      </p>
+    <% end %>
+  </div>
+
+</div>

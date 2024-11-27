@@ -1,0 +1,41 @@
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/restaurants">Restaurants</a>
+    <a class="btn btn-primary" href="/restaurants/new">New Restaurant</a>
+  </div>
+</nav>
+
+<div class="container">
+  <H1><%= @restaurant.name %></H1>
+
+  <p>Adress: <%= @restaurant.address %></p>
+  <p>Phone number: <%= @restaurant.phone_number %></p>
+  <p>Category: <%= @restaurant.category %></p>
+
+  <p><strong>Reviews</strong></p>
+  <ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <p><%= review.content %> - <%= review.rating %>/5</p>
+    <% end %>
+  </ul>
+  <br>
+
+<div class="container">
+  <h1><strong>Add new review</strong></h1>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :content %>
+      <%= f.input :rating %>
+    </div>
+
+    <div class="form-actions">
+        <%= f.button :submit, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+  
+  <%= link_to "back to restaurants", restaurants_path %>
+</div>
